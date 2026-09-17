@@ -1,3 +1,26 @@
+local Exploit = identifyexecutor and identifyexecutor() or 'Unknown';
+
+local Unsupported_Executors = {
+    ["Xeno"] = true,
+    ["Solara"] = true,
+    ["xeno"] = true,
+    ["solara"] = true,
+    ["XENO"] = true,
+    ["SOLARA"] = true,
+}
+
+if Unsupported_Executors[Exploit] then
+    if game.Players and game.Players.LocalPlayer then
+        pcall(function()
+            game.Players.LocalPlayer:Kick("Unsupported executor detected: " .. Exploit .. ". Please use a supported executor.")
+        end)
+    end
+    pcall(function()
+        game:Shutdown()
+    end)
+    error("Unsupported executor detected: " .. Exploit)
+end
+
 local Bladeball = {
     [13772394625] = true,
     [15234596844] = true,
