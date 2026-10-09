@@ -48,11 +48,11 @@ local Untitled_Tag_Game = {
 
 local url
 if Bladeball[game.PlaceId] then
-    url = "https://api.polsec.sh/loader/6750e025902df237/e47868cd7e6110a6"
+    url = "https://api.polsec.net/loader/6750e025902df237/e47868cd7e6110a6"
 elseif Flick[game.PlaceId] then
-    url = "https://api.polsec.sh/loader/6750e025902df237/4684f06f001e6b58"
+    url = "https://api.polsec.net/loader/6750e025902df237/4684f06f001e6b58"
 elseif Untitled_Tag_Game[game.PlaceId] then
-    url = "https://api.polsec.sh/loader/6750e025902df237/ba97d7392ae41b50"
+    url = "https://api.polsec.net/loader/6750e025902df237/ba97d7392ae41b50"
 end
 
 if not url then
