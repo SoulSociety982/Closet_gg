@@ -1,4 +1,7 @@
 --[[
-Closet.GG > All Script Hubs
+    Please don't attempt to tamper ir even deobfuscate our script :D
+    We worked over time for this. Have mercy :(
+
+    Closet.GG > Premium/Skidded slops
 ]] 
-loadstring(game:HttpGet("https://api.polsec.net/loader/6750e025902df237/4f82a4fdb7cd6dc6"))()
+loadstring(game:HttpGet("https://flowauth.net/v1/loaders/Loader_V3_Closet_GG.lua"))()
